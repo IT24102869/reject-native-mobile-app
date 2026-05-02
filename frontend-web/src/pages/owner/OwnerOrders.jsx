@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
+import { useNotification } from '../../context/NotificationContext';
 import { Clock, User, Phone, Mail, CheckCircle, Package, Send } from 'lucide-react';
 
 const OwnerOrders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { showNotification } = useNotification();
 
   const fetchOrders = async () => {
     try {
@@ -24,9 +26,10 @@ const OwnerOrders = () => {
   const updateStatus = async (id, status) => {
     try {
       await api.put(`/orders/${id}/status`, { status });
+      showNotification(`Order status updated to ${status}`, 'success');
       fetchOrders();
     } catch (err) {
-      alert('Status update failed');
+      showNotification('Status update failed', 'error');
     }
   };
 

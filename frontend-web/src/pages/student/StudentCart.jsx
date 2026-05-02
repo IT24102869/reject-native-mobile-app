@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useCart } from '../../context/CartContext';
+import { useNotification } from '../../context/NotificationContext';
 import api from '../../services/api';
 import { Trash2, Clock, CheckCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const StudentCart = () => {
   const { cart, removeFromCart, clearCart, total } = useCart();
+  const { showNotification } = useNotification();
   const [pickupTime, setPickupTime] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -44,10 +46,11 @@ const StudentCart = () => {
       await Promise.all(promises);
       clearCart();
       setSuccess(true);
+      showNotification('Order placed successfully!', 'success');
       setTimeout(() => navigate('/orders'), 2000);
     } catch (err) {
       console.error('Checkout failed', err);
-      alert('Checkout failed. Please try again.');
+      showNotification('Checkout failed. Please try again.', 'error');
     } finally {
       setLoading(false);
     }

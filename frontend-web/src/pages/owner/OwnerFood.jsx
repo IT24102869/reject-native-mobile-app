@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
+import { useNotification } from '../../context/NotificationContext';
 import { Plus, Edit2, Trash2, X } from 'lucide-react';
 
 const OwnerFood = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { showNotification } = useNotification();
   const [showModal, setShowModal] = useState(false);
   const [editingFood, setEditingFood] = useState(null);
   const [formData, setFormData] = useState({ name: '', description: '', price: '', image: '', available: true });
@@ -29,15 +31,17 @@ const OwnerFood = () => {
     try {
       if (editingFood) {
         await api.put(`/foods/${editingFood._id}`, formData);
+        showNotification('Food item updated successfully!', 'success');
       } else {
         await api.post('/foods', formData);
+        showNotification('New food item added!', 'success');
       }
       fetchFoods();
       setShowModal(false);
       setEditingFood(null);
       setFormData({ name: '', description: '', price: '', image: '', available: true });
     } catch (err) {
-      alert('Operation failed');
+      showNotification('Operation failed', 'error');
     }
   };
 
@@ -45,9 +49,10 @@ const OwnerFood = () => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     try {
       await api.delete(`/foods/${id}`);
+      showNotification('Food item deleted', 'info');
       fetchFoods();
     } catch (err) {
-      alert('Delete failed');
+      showNotification('Delete failed', 'error');
     }
   };
 

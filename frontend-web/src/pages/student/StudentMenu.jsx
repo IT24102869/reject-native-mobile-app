@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { useCart } from '../../context/CartContext';
+import { useNotification } from '../../context/NotificationContext';
 import { Plus, Info } from 'lucide-react';
 
 const StudentMenu = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
+  const { showNotification } = useNotification();
+
+  const handleAddToCart = (food) => {
+    addToCart(food);
+    showNotification(`${food.name} added to cart!`, 'success');
+  };
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -53,7 +60,7 @@ const StudentMenu = () => {
               <button 
                 className="btn btn-primary" 
                 style={{ width: '100%', justifyContent: 'center' }}
-                onClick={() => addToCart(food)}
+                onClick={() => handleAddToCart(food)}
               >
                 <Plus size={18} />
                 <span>Add to Cart</span>
