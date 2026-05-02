@@ -172,5 +172,44 @@ a {
 
 .badge-pending { background: #fef3c7; color: #92400e; }
 .badge-preparing { background: #e0f2fe; color: #075985; }
-.badge-ready { background: #dcfce7; color: #166534; }
-.badge-completed { background: #f1f5f9; color: #475569; }
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .navbar-content {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .navbar {
+    height: auto;
+  }
+
+  .grid-menu {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  .cart-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeIn 0.3s ease-out;
+}
+

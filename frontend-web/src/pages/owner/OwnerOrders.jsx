@@ -41,7 +41,7 @@ const OwnerOrders = () => {
           <div key={order._id} className="card" style={{ borderLeft: `6px solid ${order.status === 'pending' ? '#f59e0b' : order.status === 'preparing' ? '#6366f1' : '#22c55e'}` }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
                   <h3 style={{ fontSize: '1.25rem' }}>Order #{order._id.slice(-6)}</h3>
                   <span className={`badge badge-${order.status}`}>{order.status}</span>
                 </div>

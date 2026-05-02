@@ -77,7 +77,7 @@ const StudentCart = () => {
     <div style={{ padding: '2rem 0' }}>
       <h1 style={{ marginBottom: '2rem' }}>Your Shopping Cart</h1>
       
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
+      <div className="cart-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {cart.map((item) => (
             <div key={item._id} className="card" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
