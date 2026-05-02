@@ -39,7 +39,7 @@ export default function DashboardScreen({ navigation }) {
         keyExtractor={item => item._id}
         renderItem={({ item }) => (
           <View style={styles.card}>
-            <Text>Total: ${item.totalAmount}</Text>
+            <Text>Total: Rs. {item.totalAmount}</Text>
             <Text>Status: {item.status}</Text>
             <View style={styles.actions}>
               <Button title="Prep" onPress={() => updateStatus(item._id, 'preparing')} />

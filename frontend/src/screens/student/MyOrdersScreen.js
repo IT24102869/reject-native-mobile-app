@@ -26,7 +26,7 @@ export default function MyOrdersScreen() {
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.status}>Status: {item.status}</Text>
-            <Text>Total: ${item.totalAmount}</Text>
+            <Text>Total: Rs. {item.totalAmount}</Text>
             <Text>Pickup: {item.pickupTime}</Text>
           </View>
         )}

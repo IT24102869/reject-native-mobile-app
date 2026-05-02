@@ -39,7 +39,7 @@ export default function ManageFoodScreen({ navigation }) {
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.name}>{item.name}</Text>
-            <Text>${item.price}</Text>
+            <Text>Rs. {item.price}</Text>
             <Button title="Delete" onPress={() => deleteFood(item._id)} color="red" />
           </View>
         )}

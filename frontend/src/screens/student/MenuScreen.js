@@ -52,7 +52,7 @@ export default function MenuScreen({ navigation }) {
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.name}>{item.name}</Text>
-            <Text>${item.price}</Text>
+            <Text>Rs. {item.price}</Text>
             <Button title="Add" onPress={() => addToCart(item)} />
           </View>
         )}
