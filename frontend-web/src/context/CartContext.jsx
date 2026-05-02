@@ -28,6 +28,14 @@ export const CartProvider = ({ children }) => {
     setCart((prev) => prev.filter((i) => i._id !== id));
   };
 
+  const updateQuantity = (id, delta) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item._id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
+      )
+    );
+  };
+
   const clearCart = () => {
     setCart([]);
   };
@@ -35,7 +43,7 @@ export const CartProvider = ({ children }) => {
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, total }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, total }}>
       {children}
     </CartContext.Provider>
   );

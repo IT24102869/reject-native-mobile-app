@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import { useNotification } from '../../context/NotificationContext';
 import api from '../../services/api';
-import { Trash2, Clock, CheckCircle } from 'lucide-react';
+import { Trash2, Clock, CheckCircle, Plus, Minus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const StudentCart = () => {
-  const { cart, removeFromCart, clearCart, total } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart, total } = useCart();
   const { showNotification } = useNotification();
   const [pickupTime, setPickupTime] = useState('');
   const [loading, setLoading] = useState(false);
@@ -91,7 +91,21 @@ const StudentCart = () => {
               />
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontSize: '1rem' }}>{item.name}</h3>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Qty: {item.quantity}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '0.5rem' }}>
+                  <button 
+                    onClick={() => updateQuantity(item._id, -1)}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', borderRadius: '50%', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer' }}
+                  >
+                    <Minus size={14} />
+                  </button>
+                  <span style={{ fontWeight: '600' }}>{item.quantity}</span>
+                  <button 
+                    onClick={() => updateQuantity(item._id, 1)}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', borderRadius: '50%', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer' }}
+                  >
+                    <Plus size={14} />
+                  </button>
+                </div>
               </div>
               <div style={{ textAlign: 'right' }}>
                 <p style={{ fontWeight: '600' }}>Rs. {(item.price * item.quantity).toFixed(2)}</p>
