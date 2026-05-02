@@ -94,7 +94,7 @@ const StudentCart = () => {
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Qty: {item.quantity}</p>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <p style={{ fontWeight: '600' }}>${(item.price * item.quantity).toFixed(2)}</p>
+                <p style={{ fontWeight: '600' }}>Rs. {(item.price * item.quantity).toFixed(2)}</p>
                 <button 
                   onClick={() => removeFromCart(item._id)} 
                   style={{ color: 'var(--danger)', background: 'none', border: 'none', marginTop: '0.5rem' }}
@@ -111,7 +111,7 @@ const StudentCart = () => {
             <h3 style={{ marginBottom: '1.5rem' }}>Order Summary</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
               <span>Total Amount</span>
-              <span style={{ fontWeight: '700', fontSize: '1.25rem' }}>${total.toFixed(2)}</span>
+              <span style={{ fontWeight: '700', fontSize: '1.25rem' }}>Rs. {total.toFixed(2)}</span>
             </div>
             
             <div className="form-group">

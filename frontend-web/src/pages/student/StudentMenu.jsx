@@ -49,7 +49,7 @@ const StudentMenu = () => {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                 <h3 style={{ fontSize: '1.25rem', fontWeight: '600' }}>{food.name}</h3>
-                <span style={{ color: 'var(--primary)', fontWeight: '700', fontSize: '1.125rem' }}>${food.price}</span>
+                <span style={{ color: 'var(--primary)', fontWeight: '700', fontSize: '1.125rem' }}>Rs. {food.price}</span>
               </div>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: '1rem' }}>{food.description}</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>

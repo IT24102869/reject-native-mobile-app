@@ -54,7 +54,7 @@ const OwnerDashboard = () => {
       <h1 style={{ marginBottom: '2rem' }}>Dashboard Overview</h1>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
-        <StatCard title="Total Sales" value={`$${stats.totalSales.toFixed(2)}`} icon={DollarSign} color="#22c55e" />
+        <StatCard title="Total Sales" value={`Rs. ${stats.totalSales.toFixed(2)}`} icon={DollarSign} color="#22c55e" />
         <StatCard title="Total Orders" value={stats.totalOrders} icon={ShoppingBag} color="#6366f1" />
         <StatCard title="Active Orders" value={stats.pendingOrders} icon={TrendingUp} color="#f59e0b" />
         <StatCard title="Food Items" value={stats.activeFoods} icon={Utensils} color="#ec4899" />

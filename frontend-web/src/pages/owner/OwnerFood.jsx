@@ -84,7 +84,7 @@ const OwnerFood = () => {
             />
             <div style={{ flex: 1 }}>
               <h3 style={{ fontSize: '1.125rem' }}>{food.name}</h3>
-              <p style={{ fontWeight: '600', color: 'var(--primary)' }}>${food.price}</p>
+              <p style={{ fontWeight: '600', color: 'var(--primary)' }}>Rs. {food.price}</p>
               <span className={`badge ${food.available ? 'badge-ready' : 'badge-completed'}`} style={{ fontSize: '0.65rem' }}>
                 {food.available ? 'Available' : 'Sold Out'}
               </span>
@@ -114,7 +114,7 @@ const OwnerFood = () => {
                 <input type="text" className="form-input" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required />
               </div>
               <div className="form-group">
-                <label className="form-label">Price ($)</label>
+                <label className="form-label">Price (Rs.)</label>
                 <input type="number" step="0.01" className="form-input" value={formData.price} onChange={(e) => setFormData({...formData, price: e.target.value})} required />
               </div>
               <div className="form-group">

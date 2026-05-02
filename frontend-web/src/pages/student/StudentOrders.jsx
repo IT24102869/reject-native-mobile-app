@@ -51,7 +51,7 @@ const StudentOrders = () => {
               </div>
               <div style={{ textAlign: 'right' }}>
                 <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Total</p>
-                <p style={{ fontWeight: '700', fontSize: '1.25rem', color: 'var(--primary)' }}>${order.totalAmount.toFixed(2)}</p>
+                <p style={{ fontWeight: '700', fontSize: '1.25rem', color: 'var(--primary)' }}>Rs. {order.totalAmount.toFixed(2)}</p>
               </div>
             </div>
 
@@ -62,7 +62,7 @@ const StudentOrders = () => {
                   {order.items.map((item, idx) => (
                     <li key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 0' }}>
                       <span>{item.food?.name} x{item.quantity}</span>
-                      <span style={{ color: 'var(--text-muted)' }}>${(item.food?.price * item.quantity).toFixed(2)}</span>
+                      <span style={{ color: 'var(--text-muted)' }}>Rs. {(item.food?.price * item.quantity).toFixed(2)}</span>
                     </li>
                   ))}
                 </ul>

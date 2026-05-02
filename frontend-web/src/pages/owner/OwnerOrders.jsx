@@ -73,12 +73,12 @@ const OwnerOrders = () => {
               {order.items.map((item, idx) => (
                 <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.25rem 0' }}>
                   <span>{item.food?.name} x{item.quantity}</span>
-                  <span style={{ fontWeight: '500' }}>${(item.food?.price * item.quantity).toFixed(2)}</span>
+                  <span style={{ fontWeight: '500' }}>Rs. {(item.food?.price * item.quantity).toFixed(2)}</span>
                 </div>
               ))}
               <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', fontWeight: '700' }}>
                 <span>Total</span>
-                <span>${order.totalAmount.toFixed(2)}</span>
+                <span>Rs. {order.totalAmount.toFixed(2)}</span>
               </div>
             </div>
 
