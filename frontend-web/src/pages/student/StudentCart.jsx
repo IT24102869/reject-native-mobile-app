@@ -20,7 +20,11 @@ const StudentCart = () => {
     try {
       // Group items by ownerId
       const ordersByOwner = cart.reduce((acc, item) => {
-        const ownerId = item.ownerId._id || item.ownerId;
+        const ownerId = item.ownerId?._id || item.ownerId;
+        if (!ownerId) {
+          console.warn(`Item ${item.name} is missing an ownerId and will be skipped.`);
+          return acc;
+        }
         if (!acc[ownerId]) acc[ownerId] = [];
         acc[ownerId].push(item);
         return acc;
