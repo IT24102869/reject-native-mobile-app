@@ -6,6 +6,7 @@ const orderSchema = new mongoose.Schema({
     food: { type: mongoose.Schema.Types.ObjectId, ref: 'Food', required: true },
     quantity: { type: Number, required: true, min: 1 }
   }],
+  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   totalAmount: { type: Number, required: true },
   pickupTime: { type: String, required: true },
   status: { type: String, enum: ['pending', 'preparing', 'ready', 'completed', 'cancelled'], default: 'pending' }
