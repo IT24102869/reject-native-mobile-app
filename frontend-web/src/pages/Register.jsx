@@ -65,6 +65,7 @@ const Register = () => {
             >
               <option value="student">Student</option>
               <option value="owner">Canteen Owner</option>
+              <option value="library_admin">Library Admin</option>
             </select>
           </div>
           <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>

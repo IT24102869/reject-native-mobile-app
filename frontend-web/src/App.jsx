@@ -11,9 +11,17 @@ import Register from './pages/Register';
 import StudentMenu from './pages/student/StudentMenu';
 import StudentCart from './pages/student/StudentCart';
 import StudentOrders from './pages/student/StudentOrders';
+import StudentDashboard from './pages/student/StudentDashboard';
+import LibraryHome from './pages/student/LibraryHome';
+import LibraryRequests from './pages/student/LibraryRequests';
+
 import OwnerDashboard from './pages/owner/OwnerDashboard';
 import OwnerFood from './pages/owner/OwnerFood';
 import OwnerOrders from './pages/owner/OwnerOrders';
+
+import LibraryAdminDashboard from './pages/library-admin/LibraryAdminDashboard';
+import LibraryAdminBooks from './pages/library-admin/LibraryAdminBooks';
+import LibraryAdminRequests from './pages/library-admin/LibraryAdminRequests';
 
 const ProtectedRoute = ({ children, role }) => {
   const { user, loading } = useAuth();
@@ -39,11 +47,18 @@ function AppContent() {
           {/* Default Route */}
           <Route path="/" element={
             user ? (
-              user.role === 'owner' ? <Navigate to="/owner/dashboard" /> : <Navigate to="/menu" />
+              user.role === 'owner' ? <Navigate to="/owner/dashboard" /> :
+              user.role === 'library_admin' ? <Navigate to="/library-admin/dashboard" /> :
+              <Navigate to="/dashboard" />
             ) : <Navigate to="/login" />
           } />
 
           {/* Student Routes */}
+          <Route path="/dashboard" element={
+            <ProtectedRoute role="student">
+              <StudentDashboard />
+            </ProtectedRoute>
+          } />
           <Route path="/menu" element={
             <ProtectedRoute role="student">
               <StudentMenu />
@@ -57,6 +72,16 @@ function AppContent() {
           <Route path="/orders" element={
             <ProtectedRoute role="student">
               <StudentOrders />
+            </ProtectedRoute>
+          } />
+          <Route path="/library" element={
+            <ProtectedRoute role="student">
+              <LibraryHome />
+            </ProtectedRoute>
+          } />
+          <Route path="/library/requests" element={
+            <ProtectedRoute role="student">
+              <LibraryRequests />
             </ProtectedRoute>
           } />
 
@@ -74,6 +99,23 @@ function AppContent() {
           <Route path="/owner/orders" element={
             <ProtectedRoute role="owner">
               <OwnerOrders />
+            </ProtectedRoute>
+          } />
+
+          {/* Library Admin Routes */}
+          <Route path="/library-admin/dashboard" element={
+            <ProtectedRoute role="library_admin">
+              <LibraryAdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/library-admin/books" element={
+            <ProtectedRoute role="library_admin">
+              <LibraryAdminBooks />
+            </ProtectedRoute>
+          } />
+          <Route path="/library-admin/requests" element={
+            <ProtectedRoute role="library_admin">
+              <LibraryAdminRequests />
             </ProtectedRoute>
           } />
         </Routes>
