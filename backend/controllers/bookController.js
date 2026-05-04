@@ -17,7 +17,7 @@ const getAllBooks = async (req, res) => {
 // @access  Private (library_admin)
 const getAdminBooks = async (req, res) => {
   try {
-    const books = await Book.find({ ownerId: req.user.userId });
+    const books = await Book.find({ ownerId: req.user.id });
     res.json(books);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
@@ -42,7 +42,7 @@ const addBook = async (req, res) => {
       image,
       isAvailable,
       quantity,
-      ownerId: req.user.userId
+      ownerId: req.user.id
     });
     const savedBook = await newBook.save();
     res.status(201).json(savedBook);
@@ -60,7 +60,7 @@ const updateBook = async (req, res) => {
     if (!book) return res.status(404).json({ message: 'Book not found' });
     
     // Check if the current user owns this book
-    if (book.ownerId.toString() !== req.user.userId) {
+    if (book.ownerId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized' });
     }
 
@@ -83,7 +83,7 @@ const deleteBook = async (req, res) => {
     const book = await Book.findById(req.params.id);
     if (!book) return res.status(404).json({ message: 'Book not found' });
 
-    if (book.ownerId.toString() !== req.user.userId) {
+    if (book.ownerId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized' });
     }
 

@@ -17,7 +17,7 @@ const createRequest = async (req, res) => {
     }
 
     const request = new BorrowRequest({
-      studentId: req.user.userId,
+      studentId: req.user.id,
       bookId,
       adminId: book.ownerId,
       startDate,
@@ -36,7 +36,7 @@ const createRequest = async (req, res) => {
 // @access  Private (student)
 const getStudentRequests = async (req, res) => {
   try {
-    const requests = await BorrowRequest.find({ studentId: req.user.userId })
+    const requests = await BorrowRequest.find({ studentId: req.user.id })
       .populate('bookId')
       .populate('adminId', 'name')
       .sort('-createdAt');
@@ -51,7 +51,7 @@ const getStudentRequests = async (req, res) => {
 // @access  Private (library_admin)
 const getAdminRequests = async (req, res) => {
   try {
-    const requests = await BorrowRequest.find({ adminId: req.user.userId })
+    const requests = await BorrowRequest.find({ adminId: req.user.id })
       .populate('bookId')
       .populate('studentId', 'name email')
       .sort('-createdAt');
@@ -70,7 +70,7 @@ const updateRequestStatus = async (req, res) => {
     const request = await BorrowRequest.findById(req.params.id);
     if (!request) return res.status(404).json({ message: 'Request not found' });
 
-    if (request.adminId.toString() !== req.user.userId) {
+    if (request.adminId.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized' });
     }
 
